@@ -10,7 +10,6 @@ export default class QueuingState {
   }
 
   query(queryString: string) {
-    console.log("query queued", queryString);
     return new Promise<QueryResult>((resolve, reject) => {
       const command = () => {
         this.db.query(queryString).then(resolve, reject);

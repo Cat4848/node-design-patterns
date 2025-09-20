@@ -2,10 +2,11 @@ import "dotenv/config";
 import { EventEmitter } from "stream";
 import mysql2, { Connection, QueryResult } from "mysql2/promise";
 import QueuingState from "./QueuingState";
-import InitializedState from "./QueuingState";
+import InitializedState from "./InitializedState";
 
 export interface IDB {
   conn: Connection | null;
+  state: QueuingState | InitializedState;
   query: (queryString: string) => Promise<QueryResult>;
   connect: () => void;
 }
@@ -26,7 +27,6 @@ class MysqlDB extends EventEmitter implements IDB {
 
   public async connect() {
     if (!this.conn) {
-      console.log("within connect -> start");
       this.conn = await mysql2.createConnection(dbUrl);
       this.emit("connected");
       const oldState = this.state;

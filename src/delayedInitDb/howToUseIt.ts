@@ -7,8 +7,6 @@ const main = async () => {
     const players = await mysqlDb.query("SELECT * FROM players;");
 
     console.log("players", players);
-    const state = mysqlDb.state;
-    console.log("state", state);
   } catch (e) {
     console.log("error", e);
   }
