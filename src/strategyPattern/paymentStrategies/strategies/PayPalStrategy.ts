@@ -1,6 +1,6 @@
-import { Payment } from "../types";
+import { PaymentMethod } from "../types";
 
-export class PayPalStrategy extends Payment {
+export class PayPalStrategy extends PaymentMethod {
   pay = (amount: number) => {
     // execute the PayPal payment algorithm
   };
